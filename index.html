@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en" data-headings="serif" data-photos="natural">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Marlowe Barbers — Barbershop in Chicago</title>
+    <meta
+      name="description"
+      content="Cuts, fades, beard work and hot-towel shaves in Chicago. See the services and prices, check our hours and book an appointment online."
+    />
+    <meta name="theme-color" content="#17110E" />
+    <meta name="color-scheme" content="dark" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <!-- The hero's default photo (its tall phone crop below 720px): preloaded so the first screen paints with it. -->
+    <link
+      rel="preload"
+      as="image"
+      type="image/avif"
+      href="/photos/hero-towel-tall-720.avif"
+      imagesrcset="/photos/hero-towel-tall-480.avif 480w, /photos/hero-towel-tall-720.avif 720w, /photos/hero-towel-tall-960.avif 960w"
+      imagesizes="100vw"
+      media="(max-width: 719px)"
+      fetchpriority="high"
+    />
+    <link
+      rel="preload"
+      as="image"
+      type="image/avif"
+      href="/photos/hero-towel-wide-1600.avif"
+      imagesrcset="/photos/hero-towel-wide-960.avif 960w, /photos/hero-towel-wide-1600.avif 1600w, /photos/hero-towel-wide-2400.avif 2400w"
+      imagesizes="(min-width: 1400px) 1300px, 94vw"
+      media="(min-width: 720px)"
+      fetchpriority="high"
+    />
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

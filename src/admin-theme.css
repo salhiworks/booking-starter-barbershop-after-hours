@@ -1,0 +1,7 @@
+/*
+ * The dashboard is the engine's shared design: only its accent is ours.
+ * Marlowe's lamp: a deep walnut-amber in Light (white text), the lamp itself
+ * in Dark (espresso text). See DESIGN.md for the contrast checks.
+ */
+:root .pbe-admin[data-mode='light'] { --pbe-accent: #8a5524; --pbe-accent-text: #ffffff; } /* 6.2:1 on white, 6.2:1 */
+:root .pbe-admin[data-mode='dark']  { --pbe-accent: #e6ae68; --pbe-accent-text: #17110e; } /* 9.0:1 on #18181b, 9.5:1 */

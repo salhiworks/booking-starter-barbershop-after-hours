@@ -1,0 +1,200 @@
+/*
+ * Marlowe Barbers — design tokens ("After Hours").
+ *
+ * The ONLY place with raw colour, font, size, spacing, radius, border, shadow
+ * and motion values. Every other stylesheet uses these custom properties.
+ * (CSS cannot read custom properties inside @media, so the breakpoints —
+ * 380px, 720px and 1000px — are written out there; see DESIGN.md.)
+ *
+ * A shop lit by lamps after dark: smoked walnut and espresso, warm cream type,
+ * one lamp of amber. The owner's brand colours overwrite --ground ("Background",
+ * brand.board) and --accent ("Highlight", brand.accent) at run time; the
+ * surfaces and lines are mixed from them. Ratios are WCAG 2.x, checked by script.
+ */
+:root {
+  /* ── Colour · the room ──────────────────────────────────── */
+  --ground: #17110e; /* espresso: page ground (owner: brand.board) */
+  --surface: color-mix(in srgb, var(--ground) 90%, #3a2a20); /* #211a16 at the default: bands, the booking sheet */
+  --surface-2: color-mix(in srgb, var(--ground) 80%, #4a3729); /* #2c231e: chosen cards, hover */
+  --line: color-mix(in srgb, var(--ground) 80%, #8a7360); /* hairlines (decorative) */
+  --line-strong: color-mix(in srgb, var(--ground) 55%, #a08a74); /* rules that carry meaning */
+  --field: #7a6a5c; /* inputs, day and time outlines: 3.3:1 on surface, 3.6:1 on ground (UI ≥ 3:1) */
+
+  /* ── Colour · light ─────────────────────────────────────── */
+  --text: #f1e6d4; /* warm cream: 15.2:1 on ground, 13.9:1 on surface, 12.5:1 on surface-2 */
+  --text-dim: #b8a994; /* secondary: 8.1:1 on ground, 7.5:1 on surface, 6.7:1 on surface-2 */
+  --accent: #e6ae68; /* the lamp (owner: brand.accent): selection, emphasis, focus — 9.5:1 on ground */
+  --on-accent: #17110e; /* text on the lamp: 9.5:1 */
+  --action: var(--text); /* Book / Continue: cream, with espresso text 15.2:1 */
+  --on-action: #17110e;
+  --action-hover: #fff8ec;
+
+  /* status */
+  --error: #f0a08a; /* 8.4:1 on surface */
+  --error-wash: color-mix(in srgb, #b4432f 22%, var(--surface));
+  --success: #9fd0a6;
+  --open: #7fc28b; /* the open-now dot, with words beside it */
+
+  /* light, shadow, scrims */
+  --scrim-photo: linear-gradient(180deg, rgb(23 17 14 / 0) 30%, rgb(23 17 14 / 0.55) 62%, rgb(23 17 14 / 0.92) 100%);
+  --scrim-side: linear-gradient(90deg, rgb(23 17 14 / 0.78) 0%, rgb(23 17 14 / 0.35) 45%, rgb(23 17 14 / 0) 70%);
+  --scrim-sheet: rgb(10 7 5 / 0.66);
+  --lamp-glow: radial-gradient(60% 80% at 50% 110%, color-mix(in srgb, var(--accent) 22%, transparent) 0%, transparent 70%);
+  --shadow-sheet: 0 30px 90px rgb(0 0 0 / 0.55);
+  --shadow-bar: 0 -1px 0 var(--line), 0 -14px 30px rgb(0 0 0 / 0.35);
+  --header-glass: color-mix(in srgb, var(--ground) 86%, transparent);
+  --blur: 12px;
+
+  /* photography: as uploaded; html[data-photos='mono'] (owner choice) → black and white */
+  --photo-filter: none;
+  --photo-filter-mono: grayscale(1) contrast(1.08) brightness(0.95);
+  --photo-ground: var(--surface-2);
+
+  /* ── Type ───────────────────────────────────────────────── */
+  --font-serif: 'Instrument Serif', 'Iowan Old Style', Georgia, serif;
+  --font-sans: 'Geist Variable', 'Helvetica Neue', Arial, system-ui, sans-serif;
+  --font-mono: 'Geist Mono Variable', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+  --font-display: var(--font-serif);
+
+  --display-weight: 400;
+  --display-style: normal;
+  --w-regular: 400;
+  --w-medium: 500;
+  --w-semibold: 600;
+  --w-bold: 700;
+
+  --text-2xs: 0.6875rem; /* 11px — credits, day marks */
+  --text-xs: 0.75rem; /* 12px — mono credits */
+  --text-sm: 0.9375rem; /* 15px */
+  --text-base: 1.0625rem; /* 17px */
+  --text-input: 1.0625rem; /* ≥ 16px: no zoom on iOS */
+  --text-lg: clamp(1.0625rem, 1rem + 0.3vw, 1.25rem); /* 17 → 20 */
+  --text-name: clamp(1.625rem, 1.25rem + 1.2vw, 2.375rem); /* 26 → 38: service and barber names */
+  --text-price: clamp(1rem, 0.95rem + 0.3vw, 1.1875rem); /* 16 → 19 (mono) */
+  --text-2xl: clamp(2.75rem, 1.6rem + 4.2vw, 5.75rem); /* 44 → 92: section titles */
+  --text-hero: clamp(3.25rem, 1.2rem + 8.4vw, 9rem); /* 52 → 144: the headline over the photo */
+  --text-close: clamp(3rem, 1.4rem + 6.4vw, 7.5rem); /* 48 → 120: the closing line */
+  --text-address: clamp(2rem, 1.4rem + 2.4vw, 3.25rem); /* 32 → 52 */
+  --text-step-title: clamp(2rem, 1.6rem + 1.6vw, 2.75rem); /* 32 → 44: booking step titles */
+  --text-code: clamp(1.75rem, 1.45rem + 1.4vw, 2.25rem);
+  --text-numeral: clamp(2.5rem, 2rem + 2vw, 3.5rem);
+  --text-wordmark: clamp(1.5rem, 1.2rem + 1vw, 1.875rem); /* 24 → 30 */
+
+  --lh-display: 0.92;
+  --lh-title: 0.98;
+  --lh-snug: 1.2;
+  --lh-body: 1.6;
+  --lh-tight: 1;
+
+  --track-display: -0.015em;
+  --track-credit: 0.14em;
+  --track-code: 0.38em;
+
+  /* ── Space ──────────────────────────────────────────────── */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --space-9: 96px;
+  --space-10: 144px;
+
+  --section-pad: clamp(72px, 10vw, 152px);
+  --gutter: clamp(20px, 4vw, 56px);
+  --max-w: 1400px;
+  --measure: 62ch;
+  --measure-lede: 44ch;
+  --measure-short: 34ch;
+  --form-w: 34rem;
+  --sheet-w: 36rem;
+  --plate-min: 12rem;
+  --plate-max: 17rem;
+
+  /* ── Sizes ──────────────────────────────────────────────── */
+  --tap: 44px;
+  --tap-lg: 48px;
+  --tap-xl: 56px;
+  --row-min: 72px;
+  --header-h: 72px;
+  --day-w: 64px;
+  --day-h: 76px;
+  --slot-min: 6.25rem;
+  --code-h: 64px;
+  --dot: 8px;
+  --arrow-w: 18px;
+  --logo-h: 40px;
+  --logo-max-w: 220px;
+  --portrait-w: 7.5rem;
+  --skeleton-line: 1.1em;
+  --skeleton-title: 2rem;
+  --skeleton-line-w: 60%;
+  --skeleton-title-w: 45%;
+  --skeleton-chip-w: 16rem;
+  --wordmark-skeleton-w: 8em;
+  --spinner: 1em;
+  --spinner-small: 0.85em;
+  --error-badge: 1.25em;
+  --count-min-w: 1.75em;
+  --page-min-h: 100vh;
+  --sheet-h: 94dvh;
+
+  /* ── Frames (aspect ratios) ─────────────────────────────── */
+  --ratio-cinema: 2.39 / 1; /* the hero and the room, wide screens */
+  --ratio-wide: 16 / 9; /* tablets */
+  --ratio-room-phone: 4 / 3;
+  --ratio-tall: 4 / 5; /* the hero on phones, details, portraits */
+
+  /* ── Borders and shape ──────────────────────────────────── */
+  --hair: 1px;
+  --line-w: 1.5px;
+  --bold: 2px;
+  --radius-sm: 2px;
+  --radius-md: 6px;
+  --radius-lg: 14px;
+  --radius-pill: 999px;
+  --radius-round: 50%;
+  --underline-offset: 0.22em;
+  --opacity-disabled: 0.4;
+
+  /* ── Focus ──────────────────────────────────────────────── */
+  --focus-color: var(--accent);
+  --focus-width: 2px;
+  --focus-offset: 3px;
+
+  /* ── Motion ─────────────────────────────────────────────── */
+  --dur-fast: 160ms;
+  --dur-base: 260ms;
+  --dur-slow: 700ms;
+  --dur-reveal: 1100ms;
+  --dur-shimmer: 1600ms;
+  --dur-spin: 800ms;
+  --dur-instant: 0.01ms;
+  --stagger: 90ms;
+  --ease-out: cubic-bezier(0.22, 0.8, 0.24, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --rise: 12px;
+  --slide: 32px;
+  --nudge: 3px;
+
+  /* ── Layers ─────────────────────────────────────────────── */
+  --z-raised: 1;
+  --z-header: 20;
+  --z-skip: 100;
+}
+
+/* The owner's heading style (Website → Brand → Heading style). */
+:root[data-headings='sans'] {
+  --font-display: var(--font-sans);
+  --display-weight: 600;
+  --track-display: -0.035em;
+  --lh-display: 0.95;
+  --lh-title: 1;
+}
+
+/* The owner's photo style (Website → Brand → Photos). */
+:root[data-photos='mono'] {
+  --photo-filter: var(--photo-filter-mono);
+}

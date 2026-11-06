@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <title>Marlowe Barbers</title>
+  <rect width="64" height="64" rx="14" fill="#17110E"/>
+  <!-- An italic serif M, lit by the lamp -->
+  <path fill="#F1E6D4" d="M15 46l7.2-28h5.6l3.7 17.4L41.6 18h5.8L40.2 46h-4.8l5.2-20.4L30.4 46h-3.6l-3.6-19.2L18.8 46z"/>
+  <circle cx="49" cy="15" r="3.2" fill="#E6AE68"/>
+</svg>
