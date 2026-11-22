@@ -5,8 +5,8 @@ not: each keeps its own terms.
 
 ## Photographs — Pexels License
 
-Four photographs from Pexels, downloaded into the project (never hot-linked),
-then cropped for their frames. Only the processed frames are in this
+Three photographs from Pexels, downloaded into the project (never hot-linked),
+then cropped for their four frames (the hero photo twice: wide and tall). Only the processed frames are in this
 repository; the original downloads are not. Each photo page was checked on
 2026-11-06 (pages and edits: `PHOTOS.md`).
 
@@ -27,7 +27,7 @@ replace these with photos of your own shop** — nobody shown works at your shop
 
 | Package | Licence | Notes |
 |---|---|---|
-| `@profitstudio/booking-engine` 2.0.0-beta.3 | MIT | The booking engine and the packaged dashboard |
+| `@profitstudio/booking-engine` 2.0.0-beta.4 | MIT | The booking engine and the packaged dashboard |
 | `react`, `react-dom` | MIT | |
 | `@fontsource/instrument-serif`, `@fontsource-variable/geist`, `@fontsource-variable/geist-mono` | OFL-1.1 | Typefaces |
 

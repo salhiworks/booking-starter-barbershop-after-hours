@@ -1,5 +1,6 @@
 import { formatDateTime, formatTime, type Business } from '@profitstudio/booking-engine';
 import { longDate } from '../../lib/format';
+import { INACTIVE_TITLE, answerOf, inactiveNext } from '../../lib/bookingStatus';
 import { ContactCard } from './ContactCard';
 import type { Outcome } from './types';
 
@@ -57,7 +58,19 @@ export function DoneStep({ outcome, business, serviceName, pendingText, confirme
   }
 
   const c = outcome.confirmation;
-  const confirmed = c.status === 'confirmed';
+  // Only 'confirmed' is booked and only 'pending' is a request; the flow never brings anything else here.
+  const answer = answerOf(c);
+  if (answer === 'inactive') {
+    return (
+      <div className="done">
+        <ContactCard business={business} title={INACTIVE_TITLE} text={inactiveNext(c.reference)} />
+        <button type="button" className="text-btn" onClick={onRestart}>
+          Choose a new time
+        </button>
+      </div>
+    );
+  }
+  const confirmed = answer === 'confirmed';
   return (
     <div className={`done ${confirmed ? 'done--confirmed' : 'done--pending'}`}>
       <p className="done__lead">

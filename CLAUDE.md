@@ -4,7 +4,7 @@ A one-page booking website for a barbershop, shipped as **Marlowe Barbers** (a
 fictional shop in Chicago, IL) for the owner to make their own. Its identity
 lives in `src/site.config.ts`; `CUSTOMIZE.md` is the prompt that personalizes it.
 Built around the **Profit Studio Booking Engine** (`@profitstudio/booking-engine`
-**2.0.0-beta.3**, pinned; lock in `booking-engine.lock.json`). The engine owns the
+**2.0.0-beta.4**, pinned; lock in `booking-engine.lock.json`). The engine owns the
 booking system; this project owns the public website's design.
 
 Read before changing anything booking-related:
@@ -41,6 +41,11 @@ Always:
 - Handle `ok: false` on every call; show success only when `verifyBooking()`
   returned `ok: true`, worded for `pending` vs `confirmed`. Preview mode answers
   `PREVIEW_MODE` — say so, never fake a confirmation.
+- Read the engine's answer strictly (`src/lib/bookingStatus.ts`): say "booked" only when `status === 'confirmed'`
+  and "request received" only when it is `'pending'` — never treat "not pending" as booked. `BOOKING_INACTIVE`
+  (the code was accepted earlier, but the request was declined, cancelled or not confirmed in time) is never a
+  success: show "This request is no longer active. Please choose a new time or contact the business." with the
+  reference, go back to the times, and forget the remembered code so no recovery path verifies it again.
 - When `business.policies.onlineBookingEnabled` is false, show contact details
   instead of the flow.
 - Keep the request id in component state only (never storage or the URL).

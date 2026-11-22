@@ -22,6 +22,7 @@ import { DetailsStep } from './DetailsStep';
 import { DoneStep } from './DoneStep';
 import { problemText, serverFieldError, validateDetails } from './messages';
 import { ServiceStep } from './ServiceStep';
+import { INACTIVE_TITLE, answerOf } from '../../lib/bookingStatus';
 import { Summary } from './Summary';
 import { TimeStep } from './TimeStep';
 import {
@@ -331,7 +332,10 @@ export function BookingFlow({ business, services, onServicesStale, onBusinessSta
   if (step === 'done' && state.outcome) {
     if (state.outcome.kind === 'preview') title = 'Preview — nothing was saved';
     else if (state.outcome.kind === 'limit') title = 'Let’s sort this out together';
-    else title = state.outcome.confirmation.status === 'confirmed' ? values['book.confirmed'] : values['book.pending'];
+    else {
+      const answer = answerOf(state.outcome.confirmation);
+      title = answer === 'confirmed' ? values['book.confirmed'] : answer === 'pending' ? values['book.pending'] : INACTIVE_TITLE;
+    }
   }
 
   let content: ReactNode = null;

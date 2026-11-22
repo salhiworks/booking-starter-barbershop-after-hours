@@ -5,6 +5,7 @@ import {
   type Business,
   type PendingVerification,
 } from '@profitstudio/booking-engine';
+import { answerOf, inactiveText, isInactive, referenceOf } from '../../lib/bookingStatus';
 import { engine } from '../../lib/engine';
 import { useNow } from '../../lib/use-now';
 import { problemText } from './messages';
@@ -51,6 +52,21 @@ export function CodeStep({ business, pending, onVerified, onPreview, onBackToTim
 
   const backToTimes = (text: string) => onBackToTimes({ tone: 'alert', text });
 
+  /**
+   * The code was accepted earlier, but the request is no longer active — the shop
+   * declined or cancelled it, or it was not confirmed in time (engine
+   * BOOKING_INACTIVE). Never a booking: forget the code so no recovery path
+   * verifies it again, and go back to the times with the shop's contact details.
+   */
+  function inactive(reference: string | null) {
+    lastSubmitted.current = '';
+    setCode('');
+    setError(null);
+    setInfo(null);
+    const reach = [business.contact?.phone, business.contact?.email].filter(Boolean).join(' · ');
+    backToTimes(reach ? `${inactiveText(reference)} ${reach}` : inactiveText(reference));
+  }
+
   async function verify(value: string) {
     if (verifying) return;
     if (value.length !== 6) {
@@ -64,10 +80,16 @@ export function CodeStep({ business, pending, onVerified, onPreview, onBackToTim
     const result = await engine.verifyBooking({ requestId: pending.requestId, code: value });
     setVerifying(false);
     if (result.ok) {
-      onVerified(result.data);
+      // Booked only when confirmed, a request only when pending: anything else is not an appointment.
+      if (answerOf(result.data) === 'inactive') inactive(result.data.reference);
+      else onVerified(result.data);
       return;
     }
     const e = result.error;
+    if (isInactive(e)) {
+      inactive(referenceOf(e));
+      return;
+    }
     switch (e.code) {
       case 'PREVIEW_MODE':
         onPreview();

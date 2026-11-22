@@ -1,6 +1,7 @@
 # Photographs
 
-Four licensed photographs, all from Pexels under the
+Three licensed photographs in four frames (the hero photo is cropped twice: a
+2.39:1 frame for tablets and wider, a 4:5 frame for phones), all from Pexels under the
 [Pexels License](https://www.pexels.com/license/) (free to use and modify,
 attribution not required — credited here anyway). No image-generation tool was
 used. **This starter ships only the processed frames in `public/photos/`** — the
