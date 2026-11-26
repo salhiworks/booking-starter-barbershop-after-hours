@@ -27,7 +27,7 @@ replace these with photos of your own shop** — nobody shown works at your shop
 
 | Package | Licence | Notes |
 |---|---|---|
-| `@profitstudio/booking-engine` 2.0.0-beta.4 | MIT | The booking engine and the packaged dashboard |
+| `@profitstudio/booking-engine` 2.0.0 | MIT | The booking engine and the packaged dashboard |
 | `react`, `react-dom` | MIT | |
 | `@fontsource/instrument-serif`, `@fontsource-variable/geist`, `@fontsource-variable/geist-mono` | OFL-1.1 | Typefaces |
 
