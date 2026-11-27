@@ -4,7 +4,7 @@ A one-page booking website for a barbershop, shipped as **Marlowe Barbers** (a
 fictional shop in Chicago, IL) for the owner to make their own. Its identity
 lives in `src/site.config.ts`; `CUSTOMIZE.md` is the prompt that personalizes it.
 Built around the **Profit Studio Booking Engine** (`@profitstudio/booking-engine`
-**2.0.0**, pinned; lock in `booking-engine.lock.json`). The engine owns the
+**2.0.1**, pinned; lock in `booking-engine.lock.json`). The engine owns the
 booking system; this project owns the public website's design.
 
 Read before changing anything booking-related:

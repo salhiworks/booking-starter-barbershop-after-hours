@@ -14,7 +14,7 @@ a fictional barbershop in Chicago:
 The look: a barbershop lit by lamps after dark — espresso and smoked walnut, warm cream type, one restrained amber highlight, an editorial serif (Instrument Serif) with a clean sans (Geist) and film-credit mono (Geist Mono), and cinematic photographs. The name is a look, not opening hours: those come from your dashboard. See `DESIGN.md`.
 
 Booking runs on [`@profitstudio/booking-engine`](https://www.npmjs.com/package/@profitstudio/booking-engine)
-**2.0.0** (pinned) with your own Supabase project and Resend for email.
+**2.0.1** (pinned) with your own Supabase project and Resend for email.
 
 ## 1. Try it (no accounts needed)
 
